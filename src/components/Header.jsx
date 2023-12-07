@@ -1,3 +1,4 @@
+/* paper */
 import { Appbar } from "react-native-paper";
 
 const Header = (props) => {
