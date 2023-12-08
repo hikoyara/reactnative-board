@@ -5,7 +5,7 @@ import { Icon, TextInput, Button } from "react-native-paper";
 /* router */
 import { Link } from "expo-router";
 
-export default function SignIn() {
+export default function SignUp() {
     const [membersId, setMembersId] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function SignIn() {
                 <View style={styles.iconWrapper}>
                     <Icon source="lock-outline" size={24} color="#fff" />
                 </View>
-                <Text style={styles.headText}>Sign in</Text>
+                <Text style={styles.headText}>Sign up</Text>
             </View>
             <View style={styles.form}>
                 <TextInput
@@ -54,11 +54,11 @@ export default function SignIn() {
                         setLoading(!loading);
                     }}
                 >
-                    SIGN IN
+                    SIGN UP
                 </Button>
                 <View style={styles.link}>
-                    <Link href="/member/auth/SignUp" asChild>
-                        <Text style={styles.linkText}>Don't have an account? Sign Up</Text>
+                    <Link href="/member/auth/SignIn" asChild>
+                        <Text style={styles.linkText}>Do you already have an account? Sign In</Text>
                     </Link>
                 </View>
             </View>
