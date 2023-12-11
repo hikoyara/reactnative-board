@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+/* lib */
+import { signup } from "../../../lib/auth";
 /* paper */
 import { Icon, TextInput, Button } from "react-native-paper";
 /* router */
@@ -9,6 +11,12 @@ export default function SignUp() {
     const [membersId, setMembersId] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const handlePress = async () => {
+        setLoading(true);
+        await signup(membersId, password);
+        setLoading(false);
+    };
 
     return (
         <View style={styles.container}>
@@ -44,16 +52,11 @@ export default function SignUp() {
                     outlineStyle={{
                         borderWidth: 1,
                     }}
+                    autoCapitalize="none"
+                    secureTextEntry
+                    textContentType="password"
                 />
-                <Button
-                    loading={loading}
-                    mode="contained"
-                    buttonColor="#1976d2"
-                    style={styles.button}
-                    onPress={() => {
-                        setLoading(!loading);
-                    }}
-                >
+                <Button loading={loading} mode="contained" buttonColor="#1976d2" style={styles.button} onPress={handlePress}>
                     SIGN UP
                 </Button>
                 <View style={styles.link}>
