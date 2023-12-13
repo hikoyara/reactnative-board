@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 /* lib */
 import { db, auth } from "../config";
 /* firestore */
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { doc, getDoc, deleteDoc, setDoc, Timestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const signup = async (id, password) => {
@@ -10,18 +10,19 @@ export const signup = async (id, password) => {
         Alert.alert("未入力の項目があります。");
         return;
     }
-    const q = query(collection(db, "members"), where("id", "==", id));
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-        Alert.alert("組合員ユーザーが見つかりません。");
-    } else {
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            if (data.password !== password) {
-                Alert.alert("パスワードが違います。");
-            } else {
-                createUserWithEmailAndPassword(auth, `member${id}@test.com`, password);
-            }
+    const docRef = doc(db, "members", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        await deleteDoc(docRef);
+        await createUserWithEmailAndPassword(auth, `member${id}@test.com`, password).then((userCredential) => {
+            console.log(userCredential.user.uid);
+            setDoc(doc(db, "members", userCredential.user.uid), {
+                id,
+                state: "Authenticated",
+                updatedAt: Timestamp.fromDate(new Date()),
+            });
         });
+    } else {
+        Alert.alert("仮登録が未完了のユーザーです");
     }
 };
