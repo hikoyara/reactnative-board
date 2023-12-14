@@ -1,22 +1,14 @@
 import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-/* lib */
-import { signup } from "../../../lib/auth";
 /* paper */
 import { Icon, TextInput, Button } from "react-native-paper";
 /* router */
 import { Link } from "expo-router";
 
-export default function SignUp() {
+export default function signIn() {
     const [membersId, setMembersId] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-
-    const handlePress = async () => {
-        setLoading(true);
-        await signup(membersId, password);
-        setLoading(false);
-    };
 
     return (
         <View style={styles.container}>
@@ -24,7 +16,7 @@ export default function SignUp() {
                 <View style={styles.iconWrapper}>
                     <Icon source="lock-outline" size={24} color="#fff" />
                 </View>
-                <Text style={styles.headText}>Sign up</Text>
+                <Text style={styles.headText}>Sign in</Text>
             </View>
             <View style={styles.form}>
                 <TextInput
@@ -52,16 +44,21 @@ export default function SignUp() {
                     outlineStyle={{
                         borderWidth: 1,
                     }}
-                    autoCapitalize="none"
-                    secureTextEntry
-                    textContentType="password"
                 />
-                <Button loading={loading} mode="contained" buttonColor="#1976d2" style={styles.button} onPress={handlePress}>
-                    SIGN UP
+                <Button
+                    loading={loading}
+                    mode="contained"
+                    buttonColor="#1976d2"
+                    style={styles.button}
+                    onPress={() => {
+                        setLoading(!loading);
+                    }}
+                >
+                    SIGN IN
                 </Button>
                 <View style={styles.link}>
-                    <Link href="/member/auth/SignIn" asChild>
-                        <Text style={styles.linkText}>Do you already have an account? Sign In</Text>
+                    <Link href="/member/auth/sign_up" asChild>
+                        <Text style={styles.linkText}>Don't have an account? Sign Up</Text>
                     </Link>
                 </View>
             </View>
