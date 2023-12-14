@@ -1,6 +1,8 @@
 import { useState } from "react";
-
+/* router */
 import { Tabs } from "expo-router";
+/* react-navigation */
+import { CommonActions } from "@react-navigation/native";
 /* paper */
 import { BottomNavigation, Text, Icon } from "react-native-paper";
 
