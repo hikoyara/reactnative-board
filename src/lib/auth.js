@@ -23,7 +23,7 @@ export const signup = async (id, password) => {
                 state: "Authenticated",
                 updatedAt: Timestamp.fromDate(new Date()),
             });
-            router.replace("member/(tabs)/board/list");
+            router.replace("/member/(tabs)/board/list");
         });
     } else {
         Alert.alert("仮登録が未完了のユーザーです");
@@ -38,7 +38,7 @@ export const signin = async (id, password) => {
     await signInWithEmailAndPassword(auth, `member${id}@test.com`, password)
         .then((userCredential) => {
             console.log("logged in!", userCredential.user.uid);
-            router.replace("member/(tabs)/board/list");
+            router.replace("/member/(tabs)/board/list");
         })
         .catch((error) => {
             Alert.alert("ユーザーが見つかりません。");
