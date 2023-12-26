@@ -9,7 +9,8 @@ const Index = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user !== null) {
-                router.replace("/member/(tabs)/board/list");
+                // router.replace("/member/(tabs)/board/list");
+                router.replace("/member/(drawer)/(tabs)");
             }
         });
     }, []);
