@@ -1,6 +1,8 @@
+/* components */
+import SideNavigation from "../../../components/SideNavigation";
+/* router */
 import { Drawer } from "expo-router/drawer";
-import { Text } from "react-native-paper";
 
 export default function MemberDrawer() {
-    return <Drawer screenOptions={{ headerShown: false, swipeEdgeWidth: 100 }}></Drawer>;
+    return <Drawer screenOptions={{ headerShown: false, swipeEdgeWidth: 100 }} drawerContent={() => <SideNavigation />}></Drawer>;
 }
