@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import Header from "../../../../../components/Header";
 
-export default function profile() {
+export default function index() {
     return (
         <View style={styles.container}>
             <Header>Account</Header>

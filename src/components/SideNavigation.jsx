@@ -2,6 +2,8 @@ import { useState } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 /* paper */
 import { Drawer, Avatar, Icon, Text } from "react-native-paper";
+/* router */
+import { router } from "expo-router";
 
 export default function SideNavigation() {
     const [active, setActive] = useState("");
@@ -16,7 +18,7 @@ export default function SideNavigation() {
             </View>
             <ScrollView style={styles.container}>
                 <Drawer.Section title="ACCOUNT">
-                    <Drawer.Item label="Profile" icon={() => <Icon source="account" size={24} />} active={active === "first"} onPress={() => setActive("first")} />
+                    <Drawer.Item label="Profile" icon={() => <Icon source="account" size={24} />} active={active === "first"} onPress={() => router.push("/member/(drawer)/account")} />
                     <Drawer.Item label="Second Item" icon={() => <Icon source="cancel" size={24} />} active={active === "second"} onPress={() => setActive("second")} />
                 </Drawer.Section>
                 <Drawer.Section title="SETTINGS">

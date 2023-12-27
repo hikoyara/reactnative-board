@@ -67,10 +67,10 @@ export default function MemberBottomTabs() {
                     }}
                 />
                 <Tabs.Screen
-                    name="account"
+                    name="sample"
                     options={{
-                        tabBarLabel: "Account",
-                        title: "Account",
+                        tabBarLabel: "Sample",
+                        title: "Sample",
                         tabBarIcon: ({ color, size }) => <Icon source="account" color={color} size={size} />,
                     }}
                 />

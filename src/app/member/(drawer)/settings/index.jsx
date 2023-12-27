@@ -1,5 +1,5 @@
 import { Text, StyleSheet, View } from "react-native";
-import { DrawerToggleButton } from "@react-navigation/drawer";
+/* router */
 import { Drawer } from "expo-router/drawer";
 
 export default function Page() {
@@ -8,8 +8,7 @@ export default function Page() {
             <Drawer.Screen
                 options={{
                     title: "Settings",
-                    headerShown: true,
-                    headerLeft: () => <DrawerToggleButton />,
+                    headerShown: false,
                 }}
             />
             <Text style={{ fontSize: 24 }}>Index page of Settings Drawer</Text>
