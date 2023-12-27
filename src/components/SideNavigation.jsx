@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 /* paper */
-import { Drawer, Avatar, Icon } from "react-native-paper";
+import { Drawer, Avatar, Icon, Text } from "react-native-paper";
 
 export default function SideNavigation() {
     const [active, setActive] = useState("");
@@ -9,10 +9,14 @@ export default function SideNavigation() {
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.header}>
                 <Avatar.Icon size={40} icon="account" />
+                <Text variant="titleLarge" style={styles.memberName}>
+                    テスト組合員
+                </Text>
+                <Text style={styles.memberId}>ID:012345</Text>
             </View>
             <ScrollView style={styles.container}>
                 <Drawer.Section title="ACCOUNT">
-                    <Drawer.Item label="Profile" icon={() => <Icon source="cancel" size={24} />} active={active === "first"} onPress={() => setActive("first")} />
+                    <Drawer.Item label="Profile" icon={() => <Icon source="account" size={24} />} active={active === "first"} onPress={() => setActive("first")} />
                     <Drawer.Item label="Second Item" icon={() => <Icon source="cancel" size={24} />} active={active === "second"} onPress={() => setActive("second")} />
                 </Drawer.Section>
                 <Drawer.Section title="SETTINGS">
@@ -34,5 +38,11 @@ const styles = StyleSheet.create({
     header: {
         paddingHorizontal: 24,
         paddingBottom: 16,
+    },
+    memberName: {
+        marginTop: 8,
+    },
+    memberId: {
+        color: "#707070",
     },
 });
