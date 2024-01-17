@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+/* context */
+import { useAuthContext } from "../context/UserContext";
 /* paper */
 import { Drawer, Avatar, Icon, Text } from "react-native-paper";
 /* router */
 import { router } from "expo-router";
 
 export default function SideNavigation() {
+    const user = useAuthContext().user;
+
     const [active, setActive] = useState("");
+
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.header}>
@@ -14,7 +19,7 @@ export default function SideNavigation() {
                 <Text variant="titleLarge" style={styles.memberName}>
                     テスト組合員
                 </Text>
-                <Text style={styles.memberId}>ID:012345</Text>
+                <Text style={styles.memberId}>ID:{user.id}</Text>
             </View>
             <ScrollView style={styles.container}>
                 <Drawer.Section title="ACCOUNT">

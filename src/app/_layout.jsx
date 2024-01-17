@@ -1,4 +1,7 @@
 import { Stack } from "expo-router";
+/* context */
+import { AuthProvider } from "../context/UserContext";
+/* paper */
 import { MD3LightTheme as DefaultTheme, PaperProvider } from "react-native-paper";
 
 const theme = {
@@ -12,13 +15,15 @@ const theme = {
 
 const Layout = () => {
     return (
-        <PaperProvider theme={theme}>
-            <Stack
-                screenOptions={{
-                    headerShown: false,
-                }}
-            />
-        </PaperProvider>
+        <AuthProvider>
+            <PaperProvider theme={theme}>
+                <Stack
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                />
+            </PaperProvider>
+        </AuthProvider>
     );
 };
 

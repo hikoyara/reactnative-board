@@ -1,12 +1,16 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 /* components */
 import Header from "../../../../components/Header";
+/* context */
+import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
 import { Avatar, Button, Text } from "react-native-paper";
 
 export default function Profile() {
+    const user = useAuthContext().user;
+
     return (
-        <View style={styles.container}>
+        <View style={styles.container} user={user}>
             <Header back>My page</Header>
             <ScrollView style={styles.body}>
                 <View style={styles.profile}>
