@@ -5,6 +5,8 @@ import Header from "../../../../components/Header";
 import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
 import { Avatar, Button, Text } from "react-native-paper";
+/* router */
+import { router } from "expo-router";
 
 export default function Profile() {
     const user = useAuthContext().user;
@@ -16,7 +18,7 @@ export default function Profile() {
                 <View style={styles.profile}>
                     <View style={styles.profileHead}>
                         <Avatar.Icon size={80} icon="account" />
-                        <Button icon="pencil" mode="contained-tonal" onPress={() => console.log("Pressed")}>
+                        <Button icon="pencil" mode="contained-tonal" onPress={() => router.push("/member/(drawer)/account/edit")}>
                             編集する
                         </Button>
                     </View>

@@ -10,7 +10,15 @@ export default function Layout() {
                     headerShown: false,
                 }}
             />
-            <Stack screenOptions={{ headerShown: false }} />
+            <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen
+                    name="edit"
+                    options={{
+                        presentation: "modal",
+                        gestureDirection: "vertical",
+                    }}
+                />
+            </Stack>
         </>
     );
 }
