@@ -19,7 +19,7 @@ export default function SideNavigation() {
             <View style={styles.header}>
                 <MemberIcon number={user.icon} size={40} />
                 <Text variant="titleLarge" style={styles.memberName}>
-                    テスト組合員
+                    {user.name ? user.name : `組合員${user.id}`}
                 </Text>
                 <Text style={styles.memberId}>ID:{user.id}</Text>
             </View>
