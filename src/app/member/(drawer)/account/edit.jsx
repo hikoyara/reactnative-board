@@ -25,25 +25,27 @@ export default function Edit() {
     const [holiday, setHoliday] = useState(user.holiday);
     const [pay, setPay] = useState(user.pay);
 
-    const onDeside = () => {
+    const onSave = () => {
         if (auth.currentUser === null) {
             return;
         }
         const docRef = doc(db, "members", user.docId);
         updateDoc(docRef, {
+            ...user,
             icon,
             name,
-            profile,
-            address,
+            profile: profile?.replace(/\n/g, "\\n"),
+            address: address?.replace(/\n/g, "\\n"),
             phoneNumber,
-            businessDay,
-            businessTime,
-            holiday,
-            pay,
+            businessDay: businessDay?.replace(/\n/g, "\\n"),
+            businessTime: businessTime?.replace(/\n/g, "\\n"),
+            holiday: holiday?.replace(/\n/g, "\\n"),
+            pay: pay?.replace(/\n/g, "\\n"),
             updatedAt: Timestamp.fromDate(new Date()),
         })
             .then(() => {
                 setUser({
+                    ...user,
                     icon,
                     name,
                     profile,
@@ -70,8 +72,8 @@ export default function Edit() {
                 <Text variant="titleMedium" style={{ fontWeight: "600", color: "#fff" }}>
                     編集
                 </Text>
-                <Button style={styles.decide} textColor="#fff" labelStyle={{ fontWeight: "600" }} onPress={onDeside}>
-                    決定
+                <Button style={styles.decide} textColor="#fff" labelStyle={{ fontWeight: "600" }} onPress={onSave}>
+                    保存
                 </Button>
             </View>
             <ScrollView style={styles.body} contentContainerStyle={{ paddingBottom: 120 }}>

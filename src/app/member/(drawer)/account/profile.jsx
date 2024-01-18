@@ -2,6 +2,8 @@ import { StyleSheet, View, ScrollView } from "react-native";
 /* components */
 import Header from "../../../../components/Header";
 import MemberIcon from "../../../../components/MemberIcon";
+/* utils */
+import { WindowSize } from "../../../../utils/WindowSize";
 /* context */
 import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
@@ -15,7 +17,7 @@ export default function Profile() {
     return (
         <View style={styles.container} user={user}>
             <Header back>My page</Header>
-            <ScrollView style={styles.body}>
+            <ScrollView style={styles.body} contentContainerStyle={{ paddingBottom: 120 }}>
                 <View style={styles.profile}>
                     <View style={styles.profileHead}>
                         <View style={styles.profileHeadTop}>
@@ -40,28 +42,52 @@ export default function Profile() {
                     </View>
                     <View style={styles.profileTable}>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">住所</Text>
-                            <Text variant="bodyLarge">{user.address ? user.address : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">住所</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.address : "未設定"}</Text>
+                            </View>
                         </View>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">電話番号</Text>
-                            <Text variant="bodyLarge">{user.address ? user.phoneNumber : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">電話番号</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.phoneNumber : "未設定"}</Text>
+                            </View>
                         </View>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">営業日</Text>
-                            <Text variant="bodyLarge">{user.address ? user.businessDay : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">営業日</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.businessDay : "未設定"}</Text>
+                            </View>
                         </View>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">営業時間</Text>
-                            <Text variant="bodyLarge">{user.address ? user.businessTime : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">営業時間</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.businessTime : "未設定"}</Text>
+                            </View>
                         </View>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">定休日</Text>
-                            <Text variant="bodyLarge">{user.address ? user.holiday : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">定休日</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.holiday : "未設定"}</Text>
+                            </View>
                         </View>
                         <View style={styles.profileTableItem}>
-                            <Text variant="bodyLarge">決済方法</Text>
-                            <Text variant="bodyLarge">{user.address ? user.pay : "未設定"}</Text>
+                            <View style={styles.profileTableItemLeft}>
+                                <Text variant="bodyLarge">決済方法</Text>
+                            </View>
+                            <View style={styles.profileTableItemRight}>
+                                <Text variant="bodyLarge">{user.address ? user.pay : "未設定"}</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -116,5 +142,12 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         borderBottomWidth: 1,
         borderBottomColor: "#dbdbdb",
+    },
+    profileTableItemLeft: {
+        width: 80,
+    },
+    profileTableItemRight: {
+        width: WindowSize().width - 40 - 100,
+        alignItems: "flex-end",
     },
 });
