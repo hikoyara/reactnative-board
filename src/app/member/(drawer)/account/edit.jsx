@@ -1,4 +1,6 @@
 import { StyleSheet, View, ScrollView } from "react-native";
+/* components */
+import MemberIcon from "../../../../components/MemberIcon";
 /* context */
 import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
@@ -25,7 +27,7 @@ export default function Edit() {
             <ScrollView style={styles.body} contentContainerStyle={{ paddingBottom: 120 }}>
                 <View style={styles.iconWrapper}>
                     <View style={styles.iconInner}>
-                        <Avatar.Icon size={80} icon="account" />
+                        <MemberIcon number={user.icon} size={80} />
                         <IconButton
                             icon="sync"
                             mode="contained"

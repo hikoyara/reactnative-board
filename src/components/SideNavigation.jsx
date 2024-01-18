@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+/* components */
+import MemberIcon from "./MemberIcon";
 /* context */
 import { useAuthContext } from "../context/UserContext";
 /* paper */
@@ -15,7 +17,7 @@ export default function SideNavigation() {
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.header}>
-                <Avatar.Icon size={40} icon="account" />
+                <MemberIcon number={user.icon} size={40} />
                 <Text variant="titleLarge" style={styles.memberName}>
                     テスト組合員
                 </Text>

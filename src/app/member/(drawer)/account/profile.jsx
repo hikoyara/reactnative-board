@@ -1,6 +1,7 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 /* components */
 import Header from "../../../../components/Header";
+import MemberIcon from "../../../../components/MemberIcon";
 /* context */
 import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
@@ -17,7 +18,7 @@ export default function Profile() {
             <ScrollView style={styles.body}>
                 <View style={styles.profile}>
                     <View style={styles.profileHead}>
-                        <Avatar.Icon size={80} icon="account" />
+                        <MemberIcon number={user.icon} size={80} />
                         <Button icon="pencil" mode="contained-tonal" onPress={() => router.push("/member/(drawer)/account/edit")}>
                             編集する
                         </Button>
