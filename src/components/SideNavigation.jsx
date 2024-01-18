@@ -10,7 +10,7 @@ import { Drawer, Avatar, Icon, Text } from "react-native-paper";
 import { router } from "expo-router";
 
 export default function SideNavigation() {
-    const user = useAuthContext().user;
+    const { user } = useAuthContext();
 
     const [active, setActive] = useState("");
 
@@ -19,9 +19,9 @@ export default function SideNavigation() {
             <View style={styles.header}>
                 <MemberIcon number={user.icon} size={40} />
                 <Text variant="titleLarge" style={styles.memberName}>
-                    {user.name ? user.name : `組合員${user.id}`}
+                    {user.name ? user.name : `組合員${user.memberId}`}
                 </Text>
-                <Text style={styles.memberId}>ID:{user.id}</Text>
+                <Text style={styles.memberId}>ID:{user.memberId}</Text>
             </View>
             <ScrollView style={styles.container}>
                 <Drawer.Section title="ACCOUNT">

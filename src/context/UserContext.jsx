@@ -28,7 +28,8 @@ export function AuthProvider({ children }) {
                     console.log("Document data:", docSnap.data());
                     const data = docSnap.data();
                     setUser({
-                        id: data.id,
+                        docId: docSnap.id,
+                        memberId: data.memberId,
                         state: data.state,
                         icon: data.icon,
                         name: data.name,

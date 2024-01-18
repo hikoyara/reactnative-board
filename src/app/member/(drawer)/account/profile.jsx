@@ -10,7 +10,7 @@ import { Button, Text, Chip } from "react-native-paper";
 import { router } from "expo-router";
 
 export default function Profile() {
-    const user = useAuthContext().user;
+    const { user } = useAuthContext();
 
     return (
         <View style={styles.container} user={user}>
@@ -26,7 +26,7 @@ export default function Profile() {
                         </View>
                         <View style={styles.profileHeadContent}>
                             <Text variant="headlineSmall" style={styles.profileName}>
-                                {user.name ? user.name : `組合員${user.id}`}
+                                {user.name ? user.name : `組合員${user.memberId}`}
                             </Text>
                             {user.profile && (
                                 <Text variant="bodyMedium" style={styles.profileText}>

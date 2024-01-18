@@ -19,7 +19,7 @@ export const signup = async (id, password) => {
         await createUserWithEmailAndPassword(auth, `member${id}@test.com`, password).then((userCredential) => {
             console.log("member created!", userCredential.user.uid);
             setDoc(doc(db, "members", userCredential.user.uid), {
-                id,
+                memberId: id,
                 state: "Authenticated",
                 icon: Math.floor(Math.random() * 8) + 1,
                 name: "",
