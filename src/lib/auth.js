@@ -21,6 +21,16 @@ export const signup = async (id, password) => {
             setDoc(doc(db, "members", userCredential.user.uid), {
                 id,
                 state: "Authenticated",
+                icon: Math.floor(Math.random() * 8) + 1,
+                name: "",
+                profile: "",
+                address: "",
+                phoneNumber: "",
+                businessDay: "",
+                businessTime: "",
+                holiday: "",
+                pay: "",
+                createdAt: Timestamp.fromDate(new Date()),
                 updatedAt: Timestamp.fromDate(new Date()),
             });
             router.replace("/member/(tabs)/board/list");

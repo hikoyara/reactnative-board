@@ -29,6 +29,16 @@ export function AuthProvider({ children }) {
                     const data = docSnap.data();
                     setUser({
                         id: data.id,
+                        state: data.state,
+                        icon: data.icon,
+                        name: data.name,
+                        profile: data.profile,
+                        address: data.address,
+                        phoneNumber: data.phoneNumber,
+                        businessDay: data.businessDay,
+                        businessTime: data.businessTime,
+                        holiday: data.holiday,
+                        pay: data.pay,
                     });
                 }
             } else {
