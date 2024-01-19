@@ -7,7 +7,7 @@ import { WindowSize } from "../../../../utils/WindowSize";
 /* context */
 import { useAuthContext } from "../../../../context/UserContext";
 /* paper */
-import { Button, Text, Chip } from "react-native-paper";
+import { Button, Text, Chip, DataTable } from "react-native-paper";
 /* router */
 import { router } from "expo-router";
 
@@ -43,50 +43,50 @@ export default function Profile() {
                     <View style={styles.profileTable}>
                         <View style={styles.profileTableItem}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">住所</Text>
+                                <Text variant="bodyMedium">住所</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.address : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.address : "未設定"}</Text>
                             </View>
                         </View>
                         <View style={styles.profileTableItem}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">電話番号</Text>
+                                <Text variant="bodyMedium">電話番号</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.phoneNumber : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.phoneNumber : "未設定"}</Text>
                             </View>
                         </View>
                         <View style={styles.profileTableItem}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">営業日</Text>
+                                <Text variant="bodyMedium">営業日</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.businessDay : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.businessDay : "未設定"}</Text>
                             </View>
                         </View>
                         <View style={styles.profileTableItem}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">営業時間</Text>
+                                <Text variant="bodyMedium">営業時間</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.businessTime : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.businessTime : "未設定"}</Text>
                             </View>
                         </View>
                         <View style={styles.profileTableItem}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">定休日</Text>
+                                <Text variant="bodyMedium">定休日</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.holiday : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.holiday : "未設定"}</Text>
                             </View>
                         </View>
-                        <View style={styles.profileTableItem}>
+                        <View style={[styles.profileTableItem, { borderBottomWidth: 0 }]}>
                             <View style={styles.profileTableItemLeft}>
-                                <Text variant="bodyLarge">決済方法</Text>
+                                <Text variant="bodyMedium">決済方法</Text>
                             </View>
                             <View style={styles.profileTableItemRight}>
-                                <Text variant="bodyLarge">{user.address ? user.pay : "未設定"}</Text>
+                                <Text variant="bodyMedium">{user.address ? user.pay : "未設定"}</Text>
                             </View>
                         </View>
                     </View>
@@ -132,14 +132,19 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     profileTable: {
-        borderTopWidth: 1,
-        borderTopColor: "#dbdbdb",
+        backgroundColor: "#F7F3F9",
+        borderRadius: 10,
+        shadowColor: "#000000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        elevation: 4,
     },
     profileTableItem: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
         paddingVertical: 20,
+        paddingHorizontal: 10,
         borderBottomWidth: 1,
         borderBottomColor: "#dbdbdb",
     },
