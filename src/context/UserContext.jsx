@@ -25,7 +25,6 @@ export function AuthProvider({ children }) {
                 const docRef = doc(db, "members", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    console.log("Document data:", docSnap.data());
                     const data = docSnap.data();
                     setUser({
                         docId: docSnap.id,

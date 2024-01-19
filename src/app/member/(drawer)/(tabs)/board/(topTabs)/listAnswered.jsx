@@ -1,12 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
-import Header from "../../../../../components/Header";
 
-export default function list() {
+export default function ListAnswered() {
     return (
         <View style={styles.container}>
-            <Header>boards</Header>
             <View style={styles.body}>
-                <Text>ああああああ</Text>
+                <Text>回答済み</Text>
             </View>
         </View>
     );
@@ -17,7 +15,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     body: {
-        paddingTop: 100,
+        flex: 1,
+        paddingTop: 40,
         paddingHorizontal: 20,
+        backgroundColor: "#fff",
     },
 });
