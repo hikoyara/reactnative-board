@@ -2,10 +2,14 @@ import { useState } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 /* components */
 import MemberIcon from "./MemberIcon";
+/* utils */
+import { WindowSize } from "../utils/WindowSize";
+/* lib */
+import { signout } from "../lib/auth";
 /* context */
 import { useAuthContext } from "../context/UserContext";
 /* paper */
-import { Drawer, Avatar, Icon, Text } from "react-native-paper";
+import { Drawer, Icon, Text, Divider, Button, Dialog } from "react-native-paper";
 /* router */
 import { router } from "expo-router";
 
@@ -13,6 +17,15 @@ export default function SideNavigation() {
     const { user } = useAuthContext();
 
     const [active, setActive] = useState("");
+    const [visible, setVisible] = useState(false);
+
+    const showDialog = () => setVisible(true);
+    const hideDialog = () => setVisible(false);
+
+    function handlePress() {
+        signout();
+        hideDialog();
+    }
 
     return (
         <SafeAreaView style={styles.wrapper}>
@@ -33,6 +46,24 @@ export default function SideNavigation() {
                     <Drawer.Item label="Fource Item" icon={() => <Icon source="cancel" size={24} />} active={active === "fource"} onPress={() => setActive("fource")} />
                 </Drawer.Section>
             </ScrollView>
+            <View style={styles.bottom}>
+                <Divider />
+                <Button icon="logout" onPress={showDialog} style={{ borderRadius: 0 }}>
+                    ログアウト
+                </Button>
+            </View>
+            <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
+                <Dialog.Title>ログアウトします</Dialog.Title>
+                <Dialog.Content>
+                    <Text variant="bodyMedium">よろしいですか？</Text>
+                </Dialog.Content>
+                <Dialog.Actions>
+                    <Button onPress={hideDialog} textColor="#1976d2">
+                        Cancel
+                    </Button>
+                    <Button onPress={handlePress}>Ok</Button>
+                </Dialog.Actions>
+            </Dialog>
         </SafeAreaView>
     );
 }
@@ -53,5 +84,8 @@ const styles = StyleSheet.create({
     },
     memberId: {
         color: "#707070",
+    },
+    dialog: {
+        width: WindowSize().width - 48,
     },
 });

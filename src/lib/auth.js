@@ -5,7 +5,7 @@ import { db, auth } from "../config";
 import { router } from "expo-router";
 /* firestore */
 import { doc, getDoc, deleteDoc, setDoc, Timestamp } from "firebase/firestore";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const signup = async (id, password) => {
     if (!id || !password) {
@@ -53,4 +53,8 @@ export const signin = async (id, password) => {
         .catch((error) => {
             Alert.alert("ユーザーが見つかりません。");
         });
+};
+
+export const signout = () => {
+    console.log("aaa");
 };
