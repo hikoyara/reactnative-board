@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { View, StyleSheet, ScrollView, SafeAreaView, Alert } from "react-native";
 /* components */
 import MemberIcon from "./MemberIcon";
 /* utils */
@@ -17,14 +17,23 @@ export default function SideNavigation() {
     const { user } = useAuthContext();
 
     const [active, setActive] = useState("");
-    const [visible, setVisible] = useState(false);
-
-    const showDialog = () => setVisible(true);
-    const hideDialog = () => setVisible(false);
 
     function handlePress() {
-        signout();
-        hideDialog();
+        // hideDialog();
+        // signout();
+        Alert.alert("ログアウトします。", "よろしいですか？", [
+            {
+                text: "いいえ",
+                onPress: () => {},
+            },
+            {
+                text: "はい",
+                onPress: () => {
+                    signout();
+                },
+                style: "destructive",
+            },
+        ]);
     }
 
     return (
@@ -48,22 +57,10 @@ export default function SideNavigation() {
             </ScrollView>
             <View style={styles.bottom}>
                 <Divider />
-                <Button icon="logout" onPress={showDialog} style={{ borderRadius: 0 }}>
+                <Button icon="logout" onPress={handlePress} style={{ borderRadius: 0 }}>
                     ログアウト
                 </Button>
             </View>
-            <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-                <Dialog.Title>ログアウトします</Dialog.Title>
-                <Dialog.Content>
-                    <Text variant="bodyMedium">よろしいですか？</Text>
-                </Dialog.Content>
-                <Dialog.Actions>
-                    <Button onPress={hideDialog} textColor="#1976d2">
-                        Cancel
-                    </Button>
-                    <Button onPress={handlePress}>Ok</Button>
-                </Dialog.Actions>
-            </Dialog>
         </SafeAreaView>
     );
 }

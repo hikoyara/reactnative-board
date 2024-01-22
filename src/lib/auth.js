@@ -33,7 +33,7 @@ export const signup = async (id, password) => {
                 createdAt: Timestamp.fromDate(new Date()),
                 updatedAt: Timestamp.fromDate(new Date()),
             });
-            router.replace("/member/(tabs)/board/list");
+            router.replace("/member/(drawer)/(tabs)");
         });
     } else {
         Alert.alert("仮登録が未完了のユーザーです");
@@ -48,7 +48,7 @@ export const signin = async (id, password) => {
     await signInWithEmailAndPassword(auth, `member${id}@test.com`, password)
         .then((userCredential) => {
             console.log("logged in!", userCredential.user.uid);
-            router.replace("/member/(tabs)/board/list");
+            router.replace("/member/(drawer)/(tabs)");
         })
         .catch((error) => {
             Alert.alert("ユーザーが見つかりません。");
@@ -56,5 +56,11 @@ export const signin = async (id, password) => {
 };
 
 export const signout = () => {
-    console.log("aaa");
+    signOut(auth)
+        .then(() => {
+            router.replace("/member/auth/sign_up");
+        })
+        .catch(() => {
+            return;
+        });
 };
