@@ -9,7 +9,7 @@ import { signout } from "../lib/auth";
 /* context */
 import { useAuthContext } from "../context/UserContext";
 /* paper */
-import { Drawer, Icon, Text, Divider, Button, Dialog } from "react-native-paper";
+import { Drawer, Icon, Text, Divider, Button } from "react-native-paper";
 /* router */
 import { router } from "expo-router";
 
@@ -19,8 +19,6 @@ export default function SideNavigation() {
     const [active, setActive] = useState("");
 
     function handlePress() {
-        // hideDialog();
-        // signout();
         Alert.alert("ログアウトします。", "よろしいですか？", [
             {
                 text: "いいえ",

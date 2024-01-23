@@ -1,6 +1,8 @@
 import { View, StyleSheet, FlatList } from "react-native";
 /* paper */
 import { Card, Text, Icon, TextInput, Button } from "react-native-paper";
+/* router */
+import { router } from "expo-router";
 
 const items = [
     {
@@ -40,7 +42,7 @@ export default function ListUnanswered() {
                 ListHeaderComponent={header}
                 data={items}
                 renderItem={({ item }) => (
-                    <Card onPress={() => console.log("aaa")} style={styles.card}>
+                    <Card onPress={() => router.push("/member/(drawer)/(tabs)/board/detail")} style={styles.card}>
                         <Card.Content>
                             <Text variant="titleLarge">{item.title}</Text>
                             <Text variant="bodyMedium">{item.text}</Text>
