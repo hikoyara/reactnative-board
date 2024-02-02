@@ -1,8 +1,13 @@
+import { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 /* paper */
-import { Card, Text, Icon, TextInput, Button } from "react-native-paper";
-/* router */
-import { router } from "expo-router";
+import { Text, TextInput, Button } from "react-native-paper";
+/* components */
+import BoardCard from "../../../../../../components/BoardCard";
+/* firebase */
+import { db, auth } from "../../../../../../config";
+/* firestore */
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 const items = [
     {
@@ -23,6 +28,32 @@ const items = [
 ];
 
 export default function ListUnanswered() {
+    const [boards, setBoards] = useState([]);
+
+    useEffect(() => {
+        if (auth.currentUser === null) {
+            return;
+        }
+        const ref = collection(db, "boards");
+        const q = query(ref);
+        const unsub = onSnapshot(q, (snapshot) => {
+            const remoteBoards = [];
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                remoteBoards.push({
+                    id: doc.id,
+                    title: data.title,
+                    text: data.text,
+                    deadlinedAt: data.deadlinedAt.toDate(),
+                    createdAt: data.createdAt.toDate(),
+                    updatedAt: data.updatedAt.toDate(),
+                });
+            });
+            setBoards(remoteBoards);
+        });
+        return unsub;
+    }, []);
+
     const header = () => (
         <View style={styles.header}>
             <TextInput mode="outlined" label="Search" right={<TextInput.Icon icon="search-web" />} />
@@ -38,32 +69,7 @@ export default function ListUnanswered() {
 
     return (
         <View style={styles.container}>
-            <FlatList
-                ListHeaderComponent={header}
-                data={items}
-                renderItem={({ item }) => (
-                    <Card onPress={() => router.push("/member/(drawer)/(tabs)/board/detail")} style={styles.card}>
-                        <Card.Content>
-                            <Text variant="titleLarge">{item.title}</Text>
-                            <Text variant="bodyMedium">{item.text}</Text>
-                            <View style={styles.row}>
-                                <Icon source="email" size={16} color="#707070" />
-                                <Text variant="bodyMedium" style={styles.info}>
-                                    配信日
-                                </Text>
-                            </View>
-                            <View style={styles.row}>
-                                <Icon source="clock" size={16} color="#707070" />
-                                <Text variant="bodyMedium" style={styles.info}>
-                                    締切日
-                                </Text>
-                            </View>
-                        </Card.Content>
-                    </Card>
-                )}
-                style={styles.body}
-                contentContainerStyle={{ paddingBottom: 80 }}
-            />
+            <FlatList ListHeaderComponent={header} data={boards} renderItem={({ item }) => <BoardCard item={item} />} style={styles.body} contentContainerStyle={{ paddingBottom: 80 }} />
         </View>
     );
 }
@@ -86,17 +92,5 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         paddingHorizontal: 20,
         backgroundColor: "#fff",
-    },
-    card: {
-        marginBottom: 20,
-    },
-    row: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginTop: 5,
-    },
-    info: {
-        marginLeft: 4,
-        color: "#707070",
     },
 });
