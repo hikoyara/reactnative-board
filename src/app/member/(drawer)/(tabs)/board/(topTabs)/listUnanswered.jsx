@@ -37,7 +37,7 @@ export default function ListUnanswered() {
 
     const header = () => (
         <View style={styles.header}>
-            <TextInput mode="outlined" label="Search" right={<TextInput.Icon icon="search-web" />} />
+            {/* <TextInput mode="outlined" label="Search" right={<TextInput.Icon icon="search-web" />} /> */}
 
             <View style={styles.sort}>
                 <Button onPress={() => {}} icon="sort-variant" mode="contained" textColor="#707070" buttonColor="#F7F3F9">
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
-        paddingTop: 40,
+        paddingTop: 0,
         paddingHorizontal: 20,
         backgroundColor: "#fff",
     },

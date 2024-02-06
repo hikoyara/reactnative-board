@@ -22,9 +22,6 @@ export default function BoardCard(props) {
                 <Text variant="titleLarge" style={styles.cardTitle}>
                     {item.title}
                 </Text>
-                <Text variant="bodyMedium" style={styles.cardText}>
-                    {item.text}
-                </Text>
                 <View style={styles.row}>
                     <Icon source="email" size={16} color="#707070" />
                     <Text variant="bodyMedium" style={styles.info}>

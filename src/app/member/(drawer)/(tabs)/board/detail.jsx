@@ -67,7 +67,9 @@ export default function Detail() {
                         </Text>
                     </View>
                 </View>
-                <Text variant="bodyMedium">{board.text}</Text>
+                <Text variant="bodyMedium" style={styles.text}>
+                    {board.text}
+                </Text>
 
                 <Button icon="clipboard-edit" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.answerButton} onPress={showModal}>
                     回答する
@@ -81,9 +83,12 @@ export default function Detail() {
                         <RadioButton.Item label="不参加" value="third" color="#1976d2" mode="android" />
                     </RadioButton.Group>
                 </View>
-                <View style={styles.submitButtonWrapper}>
+                <View style={styles.buttonWrapper}>
+                    <Button textColor="#1976D2" onPress={hideModal}>
+                        Cancel
+                    </Button>
                     <Button icon="send" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.submitButton} onPress={hideModal}>
-                        送信
+                        Submit
                     </Button>
                 </View>
             </Modal>
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
         color: "#707070",
     },
     head: {
-        marginBottom: 20,
+        marginBottom: 40,
     },
     modal: {
         backgroundColor: "white",
@@ -124,7 +129,9 @@ const styles = StyleSheet.create({
     answerButton: {
         marginTop: 40,
     },
-    submitButtonWrapper: {
-        alignItems: "flex-end",
+    buttonWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
     },
 });
