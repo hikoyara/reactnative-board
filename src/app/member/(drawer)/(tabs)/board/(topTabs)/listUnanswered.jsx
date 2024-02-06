@@ -5,27 +5,8 @@ import { Text, TextInput, Button } from "react-native-paper";
 /* components */
 import BoardCard from "../../../../../../components/BoardCard";
 /* firebase */
-import { db, auth } from "../../../../../../config";
-/* firestore */
+import { auth, db } from "../../../../../../config";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-
-const items = [
-    {
-        id: 1,
-        title: "テスト１",
-        text: "テストです。",
-    },
-    {
-        id: 2,
-        title: "テスト２",
-        text: "テストです。",
-    },
-    {
-        id: 3,
-        title: "テスト３",
-        text: "テストです。",
-    },
-];
 
 export default function ListUnanswered() {
     const [boards, setBoards] = useState([]);

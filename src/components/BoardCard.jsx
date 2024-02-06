@@ -9,8 +9,15 @@ import { router } from "expo-router";
 export default function BoardCard(props) {
     const { item } = props;
 
+    function handlePress(id) {
+        router.push({
+            pathname: "/member/(drawer)/(tabs)/board/detail",
+            params: { id },
+        });
+    }
+
     return (
-        <Card onPress={() => router.push("/member/(drawer)/(tabs)/board/detail")} style={styles.card}>
+        <Card onPress={() => handlePress(item.id)} style={styles.card}>
             <Card.Content>
                 <Text variant="titleLarge" style={styles.cardTitle}>
                     {item.title}
