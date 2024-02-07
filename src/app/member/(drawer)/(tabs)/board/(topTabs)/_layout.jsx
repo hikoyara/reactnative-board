@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 /* screens */
-import ListUnanswered from "./listUnanswered";
+import ListNotAnswered from "./listNotAnswered";
 import ListAnswered from "./listAnswered";
 /* components */
 import Header from "../../../../../../components/Header";
@@ -26,7 +26,7 @@ export default function TopTabs() {
             >
                 <Tab.Screen
                     name="未回答"
-                    component={ListUnanswered}
+                    component={ListNotAnswered}
                     options={{
                         tabBarLabel: ({ focused }) => (
                             <View style={[styles.tabBarLabel, focused && styles.tabBarLabelActive]}>

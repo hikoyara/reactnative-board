@@ -8,7 +8,7 @@ import BoardCard from "../../../../../../components/BoardCard";
 import { auth, db } from "../../../../../../config";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-export default function ListUnanswered() {
+export default function ListNotAnswered() {
     const [boards, setBoards] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function ListUnanswered() {
             return;
         }
         const ref = collection(db, "boards");
-        const q = query(ref);
+        const q = query(ref, where("notAnswered", "array-contains", auth.currentUser.uid));
         const unsub = onSnapshot(q, (snapshot) => {
             const remoteBoards = [];
             snapshot.forEach((doc) => {
