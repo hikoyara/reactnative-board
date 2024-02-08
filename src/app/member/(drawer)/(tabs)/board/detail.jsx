@@ -10,7 +10,7 @@ import { Text, Icon, RadioButton, Button, Modal } from "react-native-paper";
 import { useLocalSearchParams } from "expo-router";
 /* firebase */
 import { auth, db } from "../../../../../config";
-import { onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 export default function Detail() {
     const { id } = useLocalSearchParams();
@@ -18,6 +18,10 @@ export default function Detail() {
     const [board, setBoard] = useState({
         title: "",
         text: "",
+        answered: [],
+        notAnswered: [],
+        participating: [],
+        notParticipating: [],
         deadlinedAt: null,
         createdAt: null,
         updatedAt: null,
@@ -27,6 +31,10 @@ export default function Detail() {
     const [visible, setVisible] = useState(false);
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
+
+    const onSubmit = () => {
+        console.log(board);
+    };
 
     useEffect(() => {
         if (auth.currentUser === null) {
@@ -39,6 +47,10 @@ export default function Detail() {
                 setBoard({
                     title: data.title,
                     text: data.text,
+                    answered: data.answered,
+                    notAnswered: data.notAnswered,
+                    participating: data.participating,
+                    notParticipating: data.notParticipating,
                     deadlinedAt: data.deadlinedAt.toDate(),
                     createdAt: data.createdAt.toDate(),
                     updatedAt: data.updatedAt.toDate(),
@@ -87,7 +99,7 @@ export default function Detail() {
                     <Button textColor="#1976D2" onPress={hideModal}>
                         Cancel
                     </Button>
-                    <Button icon="send" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.submitButton} onPress={hideModal}>
+                    <Button icon="send" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.submitButton} onPress={onSubmit}>
                         Submit
                     </Button>
                 </View>
