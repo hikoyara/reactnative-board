@@ -4,6 +4,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import Header from "../../../../../components/Header";
 /* lib */
 import { dateToStringFull } from "../../../../../lib/date";
+import { boardSubmit } from "../../../../../lib/board";
 /* paper */
 import { Text, Icon, RadioButton, Button, Modal } from "react-native-paper";
 /* router */
@@ -32,10 +33,6 @@ export default function Detail() {
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
 
-    const onSubmit = () => {
-        console.log(board);
-    };
-
     useEffect(() => {
         if (auth.currentUser === null) {
             return;
@@ -51,6 +48,7 @@ export default function Detail() {
                     notAnswered: data.notAnswered,
                     participating: data.participating,
                     notParticipating: data.notParticipating,
+                    undecided: data.undecided,
                     deadlinedAt: data.deadlinedAt.toDate(),
                     createdAt: data.createdAt.toDate(),
                     updatedAt: data.updatedAt.toDate(),
@@ -83,6 +81,7 @@ export default function Detail() {
                     {board.text}
                 </Text>
 
+                <Text variant="bodyMedium">あなたの回答：未回答</Text>
                 <Button icon="clipboard-edit" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.answerButton} onPress={showModal}>
                     回答する
                 </Button>
@@ -90,16 +89,16 @@ export default function Detail() {
             <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modal}>
                 <View style={styles.radioWrapper}>
                     <RadioButton.Group onValueChange={(value) => setValue(value)} value={value}>
-                        <RadioButton.Item label="未定" value="first" color="#1976d2" mode="android" />
-                        <RadioButton.Item label="参加" value="second" color="#1976d2" mode="android" />
-                        <RadioButton.Item label="不参加" value="third" color="#1976d2" mode="android" />
+                        <RadioButton.Item label="参加" value="participating" color="#1976d2" mode="android" />
+                        <RadioButton.Item label="不参加" value="notParticipating" color="#1976d2" mode="android" />
+                        <RadioButton.Item label="未定" value="undecided" color="#1976d2" mode="android" />
                     </RadioButton.Group>
                 </View>
                 <View style={styles.buttonWrapper}>
                     <Button textColor="#1976D2" onPress={hideModal}>
                         Cancel
                     </Button>
-                    <Button icon="send" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.submitButton} onPress={onSubmit}>
+                    <Button icon="send" mode="contained" buttonColor="#1976d2" contentStyle={{ flexDirection: "row-reverse" }} style={styles.submitButton} onPress={() => boardSubmit(id, board, value)}>
                         Submit
                     </Button>
                 </View>
