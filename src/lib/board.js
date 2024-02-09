@@ -8,7 +8,6 @@ export const boardSubmit = (id, board, value) => {
     const ref = doc(db, "boards", id);
     switch (value) {
         case "participating":
-            console.log("参加");
             updateDoc(ref, {
                 answered: board.answered.includes(auth.currentUser.uid) ? board.answered : [...board.answered, auth.currentUser.uid],
                 notAnswered: board.notAnswered.filter((userId) => userId !== auth.currentUser.uid),

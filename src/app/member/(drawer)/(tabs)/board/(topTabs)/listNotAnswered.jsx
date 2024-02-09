@@ -35,6 +35,18 @@ export default function ListNotAnswered() {
         return unsub;
     }, []);
 
+    if (boards.length === 0) {
+        return (
+            <View style={styles.container}>
+                <View style={emptyStyles.body}>
+                    <Text variant="bodyLarge" style={emptyStyles.text}>
+                        表示する回覧板がありません
+                    </Text>
+                </View>
+            </View>
+        );
+    }
+
     const header = () => (
         <View style={styles.header}>
             {/* <TextInput mode="outlined" label="Search" right={<TextInput.Icon icon="search-web" />} /> */}
@@ -73,5 +85,18 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         paddingHorizontal: 20,
         backgroundColor: "#fff",
+    },
+});
+const emptyStyles = StyleSheet.create({
+    body: {
+        flex: 1,
+        paddingTop: 0,
+        paddingHorizontal: 20,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        paddingTop: 100,
+    },
+    text: {
+        color: "#707070",
     },
 });
